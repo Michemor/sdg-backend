@@ -162,11 +162,8 @@ REST_FRAMEWORK = {
 
 # CORS Configuration
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",    # <--- Add this (Vite default)
-    "http://127.0.0.1:5173",    # <--- Add this
-]
+    "https://daystar-sdg-impact-and-evidence-gen.vercel.app", 
+    "http://localhost:3000"]
 
 
 
