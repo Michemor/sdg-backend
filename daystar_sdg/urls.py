@@ -6,6 +6,7 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -28,6 +29,7 @@ router.register(r'researchers', ResearcherViewSet, basename='researcher')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', lambda request: JsonResponse({"status": "healthy", "message": "Backend is running!"})),
 
      # JWT Token endpoints
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
