@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: daystar-sdg-backend
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn daystar_sdg.wsgi:application"
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "*" 
+      - key: DATABASE_URL
+        fromDatabase:
+          name: daystar-sdg-db
+          property: connectionString
+
+databases:
+  - name: daystar-sdg-db
+    databaseName: daystar_sdg
+    user: daystar_user
+    plan: free # Note: Free tier databases on Render expire after 90 days
+    ipAllowList: [] # Allow all IPs for now, simplify connection
